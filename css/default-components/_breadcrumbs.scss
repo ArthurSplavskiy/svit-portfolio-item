@@ -1,0 +1,51 @@
+.breadcrumbs {
+	display: flex;
+	align-items: center;
+
+    &__container {
+        margin-bottom: rem(48);
+        @media(max-width: $tablet) {
+            margin-top: rem(16);
+        }
+    }
+
+	&__list {
+		overflow-x: auto;
+		display: flex;
+		align-items: center;
+		flex-wrap: nowrap;
+
+		li {
+            @extend %sf16-14regular;
+            @include lh(24, 16, 20, 14);
+            display: flex;
+			align-items: center;
+
+            &:not(:last-child) {
+                position: relative;
+                margin-right: 8px;
+                display: flex;
+                span {
+                    color: $light-grey;
+                }
+                a {
+                    margin-right: 8px; 
+                }
+                &:after {
+                    content: '';
+                    display: block;
+                    width: rem(18);
+                    height: rem(18);
+                    background-image: url('../img/interface/bc-arrow-ico.svg');
+                    background-repeat: no-repeat;
+                }
+            }
+			span {
+				white-space: nowrap;
+			}
+            a {
+                white-space: nowrap;
+            }
+		}
+	}
+}

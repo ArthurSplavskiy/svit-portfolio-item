@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Про Svit</title>
+	<meta name="description" content="SVIT">
+	<meta name="keywords" content="SVIT, Description">
+	<meta property="og:locale" content="[locale]" />
+	<meta property="og:title" content="SVIT" />
+	<meta property="og:description" content="Tech" />
+	<meta property="og:url" content="[url]" />
+	<meta property="og:image" content="img/favicons/opengraph.jpg" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<link type="image/x-icon" rel="shortcut icon" href="favicon.ico">
+	<link type="image/png" sizes="16x16" rel="icon" href="img/favicons/favicon-16x16.png">
+	<link type="image/png" sizes="32x32" rel="icon" href="img/favicons/favicon-32x32.png">
+	<link type="image/png" sizes="48x48" rel="icon" href="img/favicons/favicon-48x48.png">
+	<link sizes="180x180" rel="apple-touch-icon" href="img/favicons/apple-touch-icon-180x180.png">
+	<link color="#088ECB" rel="mask-icon" href="img/favicons/safari-pinned-tab-16x16.svg">
+	<meta name="msapplication-TileColor" content="#088ECB">
+	<meta name="msapplication-TileImage" content="img/favicons/mstile-144x144.png">
+	<meta name="application-name" content="Site Name">
+	<meta name="theme-color" content="#000000">
+	<!-- <meta name="msapplication-config" content="others/browserconfig.xml">
+	<link rel="manifest" crossorigin="use-credentials" href="others/manifest.json"> -->
+	<style>
+		.page-preloader {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 9999;
+			background-color: #000;
+			transition: opacity 1.5s ease;
+			pointer-events: none;
+		}
+
+		.page-preloader img,
+		.page-preloader svg {
+			max-width: 240px;
+		}
+
+		@keyframes blink {
+			0% {
+				opacity: 0;
+			}
+
+			25% {
+				opacity: 0.6;
+			}
+
+			50% {
+				opacity: 1;
+			}
+
+			75% {
+				opacity: 0.65;
+			}
+
+			100% {
+				opacity: 0;
+			}
+		}
+
+		.page-preloader svg g {
+			animation: blink 4s ease-out infinite forwards;
+		}
+
+		html.loaded .page-preloader:not([data-preloader]) {
+			opacity: 0;
+		}
+
+		@media(max-width: 992px) {
+			html.loaded [data-preloader] {
+				opacity: 0;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div class="page-preloader">
+		<svg width="240" height="54" viewBox="0 0 240 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<g filter="url(#filter0_f_1638_9926)">
+				<path d="M113.728 43.0748C110.222 43.0748 106.977 41.8859 104.901 39.8085L84.0881 18.8971H50.9936C49.4759 18.8971 48.2372 19.7857 48.2372 20.8744C48.2372 21.9631 49.4759 22.8517 50.9936 22.8517H73.0973C80.7211 22.8517 86.9143 27.2942 86.9143 32.763C86.9143 38.2317 80.7211 42.6868 73.1147 42.6868H20.6033L31.6638 34.7528H73.1147C74.6325 34.7528 75.8712 33.8642 75.8712 32.7755C75.8712 31.6868 74.6325 30.7982 73.1147 30.7982H50.9936C43.3699 30.7982 37.1767 26.3557 37.1767 20.8869C37.1767 15.4182 43.3699 10.9756 50.9936 10.9756H89.7579L113.711 35.0281L133.512 10.9756H153.243V18.9097H139.827L123.376 38.9075C121.631 41.2977 118.369 42.837 114.601 43.0497C114.304 43.0622 114.007 43.0748 113.728 43.0748Z" fill="white" />
+				<path d="M164.303 18.897H153.243V42.6867H164.303V18.897Z" fill="white" />
+				<path d="M208.511 18.8971H164.303V10.9756H219.554L208.511 18.8971Z" fill="white" />
+				<path d="M191.937 14.9302H180.877V42.6869H191.937V14.9302Z" fill="white" />
+			</g>
+			<path d="M113.728 42.6841C110.222 42.6841 106.977 41.4953 104.901 39.4179L84.0881 18.5065H50.9936C49.4759 18.5065 48.2372 19.395 48.2372 20.4838C48.2372 21.5725 49.4759 22.461 50.9936 22.461H73.0973C80.7211 22.461 86.9143 26.9036 86.9143 32.3724C86.9143 37.8411 80.7211 42.2962 73.1147 42.2962H20.6033L31.6638 34.3621H73.1147C74.6325 34.3621 75.8712 33.4736 75.8712 32.3849C75.8712 31.2961 74.6325 30.4076 73.1147 30.4076H50.9936C43.3699 30.4076 37.1767 25.965 37.1767 20.4963C37.1767 15.0275 43.3699 10.585 50.9936 10.585H89.7579L113.711 34.6374L133.512 10.585H153.243V18.519H139.827L123.376 38.5169C121.631 40.9071 118.369 42.4464 114.601 42.6591C114.304 42.6716 114.007 42.6841 113.728 42.6841Z" fill="white" />
+			<path d="M164.303 18.5063H153.243V42.296H164.303V18.5063Z" fill="white" />
+			<path d="M208.511 18.5065H164.303V10.585H219.554L208.511 18.5065Z" fill="white" />
+			<path d="M191.937 14.5396H180.877V42.2963H191.937V14.5396Z" fill="white" />
+			<defs>
+				<filter id="filter0_f_1638_9926" x="-10" y="-7.60938" width="260" height="69.2188" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+					<feFlood flood-opacity="0" result="BackgroundImageFix" />
+					<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+					<feGaussianBlur stdDeviation="5" result="effect1_foregroundBlur_1638_9926" />
+				</filter>
+			</defs>
+		</svg>
+	</div>
+	<div class="page-bg">
+		<div class="page-bg__image-ibg">
+			<img src="img/page-bg-2.png" alt="svit">
+		</div>
+	</div>
+	<div class="wrapper">
+		<header class="header">
+			<div class="header__container">
+				<div class="header__content">
+					<div class="header__icon-menu icon-menu" data-burger>
+						<div class="icon-menu__content">
+							<span></span>
+						</div>
+					</div>
+					<div class="header__logo">
+						<a href="index.html">
+							<img data-src="img/interface/logo.svg" data-inline-svg alt="svit">
+						</a>
+					</div>
+					<nav class="header__menu menu" data-da=".page-menu__menu, 992, 0">
+						<ul class="menu__list">
+							<li>
+								<a href="index.html" data-text="Головна">Головна</a>
+							</li>
+							<li>
+								<a href="switches.html" data-text="Вимикачі">Вимикачі</a>
+							</li>
+							<li>
+								<a href="smart-house.html" data-text="Розумний дім">Розумний дім</a>
+							</li>
+							<li>
+								<a href="gallery.html" data-text="Галерея">Галерея</a>
+							</li>
+							<li>
+								<a href="blog.html" data-text="Блог">Блог</a>
+							</li>
+							<li>
+								<a href="support.html" data-text="Підтримка">Підтримка</a>
+							</li>
+							<li>
+								<a href="contacts.html" data-text="Контакти">Контакти</a>
+							</li>
+						</ul>
+					</nav>
+					<div class="header__actions">
+						<div class="header__search-trigger" data-search-trigger>
+							<img data-src="img/interface/search-ico.svg" data-inline-svg alt="svit">
+							<span data-text="пошук">пошук</span>
+						</div>
+						<div class="header__language" data-spollers>
+							<div class="spoller-absolute">
+								<div data-spoller>
+									<span data-text="ua">UA</span>
+									<img data-src="img/interface/shevron-ico.svg" data-inline-svg alt="Party Go">
+								</div>
+								<ul>
+									<li>
+										<a href="#">RU</a>
+									</li>
+									<li>
+										<a href="#">EN</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="header__search-field" data-search-form data-da=".page-menu__search, 992, 0">
+						<form action="#" class="search-form">
+							<fieldset class="search-form__content">
+								<div class="search-form__box">
+									<button type="submit" class="search-form__btn">
+										<img data-src="img/interface/search-ico.svg" data-inline-svg alt="svit">
+									</button>
+								</div>
+								<input type="text" class="search-form__input" placeholder="Пошук на svit.com">
+								<div class="search-form__close" data-search-close>
+									<img src="img/interface/close-ico.svg" alt="svit">
+								</div>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<div class="page-menu" data-mobile-menu>
+			<div class="page-menu__container">
+				<div class="page-menu__content">
+					<div class="page-menu__search"></div>
+					<div class="page-menu__menu"></div>
+					<div class="page-menu__contacts">
+
+						<div class="page-contacts">
+							<div class="page-contacts__content">
+								<div class="page-contacts__phones">
+									<span>Зворотній зв’язок:</span>
+									<a href="tel:+380960302040">+380 96 030 20 40</a>
+									<a href="tel:+380960302040">+40 96 030 20 40</a>
+								</div>
+								<div class="page-contacts__email">
+									<span>Напишіть нам:</span>
+									<a href="mailto:+380960302040">svit_info@gmail.com</a>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+		<main class="page page_about">
+
+			<section class="page-section page-section_text-left" style="background-image: url('img/12.jpeg');">
+				<div class="page-section__container">
+
+					<nav class="breadcrumbs">
+						<ul class="breadcrumbs__list" itemscope itemtype="http://schema.org/BreadcrumbList">
+							<li itemscope itemtype="http://schema.org/ListItem">
+								<a class="breadcrumbs__link" itemprop="item" href="index.html">
+									<img src="img/interface/home-ico.svg" alt="svit">
+								</a>
+								<meta itemprop="position" content="1" />
+							</li>
+							<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+								<span class="breadcrumbs__link" itemprop="name">Про нас</span>
+								<meta itemprop="position" content="2" />
+							</li>
+						</ul>
+					</nav>
+
+
+
+					<div class="page-section__content">
+						<div class="page-section__head">
+							<h2>Про Svit</h2>
+							<div class="page-section__animline" data-scroll></div>
+						</div>
+						<div class="page-section__body">
+							<div class="page-section__descr">
+								<h3>
+									Збудуємо новий Світ
+								</h3>
+								<p>
+									Ви можете керувати вашими приладами дистанційно та створювати власні унікальні сценарії роботи Розумного будинку.
+								</p>
+								<div class="page-section__anchor">
+									<a href="#next" class="page-anchor" data-anchor>
+										<img data-src="img/interface/anchor-ico.svg" data-inline-svg alt="svit">
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<div class="page-titers">
+				<div class="titers">
+					<div class="titers__main">
+						<ul class="titers__list" data-speed="50">
+							<li class="titers__item">ABOUT US <span>/</span> </li>
+							<li class="titers__item">ABOUT US <span>/</span> </li>
+							<li class="titers__item">ABOUT US <span>/</span> </li>
+							<li class="titers__item">ABOUT US <span>/</span> </li>
+							<li class="titers__item">ABOUT US <span>/</span> </li>
+							<li class="titers__item">ABOUT US <span>/</span> </li>
+							<li class="titers__item">ABOUT US <span>/</span> </li>
+							<li class="titers__item">ABOUT US <span>/</span> </li>
+							<li class="titers__item">ABOUT US <span>/</span> </li>
+							<li class="titers__item">ABOUT US <span>/</span> </li>
+							<li class="titers__item">ABOUT US <span>/</span> </li>
+							<li class="titers__item">ABOUT US <span>/</span> </li>
+							<li class="titers__item">ABOUT US <span>/</span> </li>
+							<li class="titers__item">ABOUT US <span>/</span> </li>
+							<li class="titers__item">ABOUT US <span>/</span> </li>
+							<li class="titers__item">ABOUT US <span>/</span> </li>
+							<li class="titers__item">ABOUT US <span>/</span> </li>
+							<li class="titers__item">ABOUT US <span>/</span> </li>
+							<li class="titers__item">ABOUT US <span>/</span> </li>
+							<li class="titers__item">ABOUT US <span>/</span> </li>
+						</ul>
+						<ul class="titers__list" data-speed="50">
+							<li class="titers__item">ABOUT US <span>/</span> </li>
+							<li class="titers__item">ABOUT US <span>/</span> </li>
+							<li class="titers__item">ABOUT US <span>/</span> </li>
+							<li class="titers__item">ABOUT US <span>/</span> </li>
+							<li class="titers__item">ABOUT US <span>/</span> </li>
+							<li class="titers__item">ABOUT US <span>/</span> </li>
+							<li class="titers__item">ABOUT US <span>/</span> </li>
+							<li class="titers__item">ABOUT US <span>/</span> </li>
+							<li class="titers__item">ABOUT US <span>/</span> </li>
+							<li class="titers__item">ABOUT US <span>/</span> </li>
+							<li class="titers__item">ABOUT US <span>/</span> </li>
+							<li class="titers__item">ABOUT US <span>/</span> </li>
+							<li class="titers__item">ABOUT US <span>/</span> </li>
+							<li class="titers__item">ABOUT US <span>/</span> </li>
+							<li class="titers__item">ABOUT US <span>/</span> </li>
+							<li class="titers__item">ABOUT US <span>/</span> </li>
+							<li class="titers__item">ABOUT US <span>/</span> </li>
+							<li class="titers__item">ABOUT US <span>/</span> </li>
+							<li class="titers__item">ABOUT US <span>/</span> </li>
+							<li class="titers__item">ABOUT US <span>/</span> </li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="titers titers_right">
+					<div class="titers__main">
+						<ul class="titers__list" data-speed="50">
+							<li class="titers__item">SMART SVIT <span>/</span> </li>
+							<li class="titers__item">SMART SVIT <span>/</span> </li>
+							<li class="titers__item">SMART SVIT <span>/</span> </li>
+							<li class="titers__item">SMART SVIT <span>/</span> </li>
+							<li class="titers__item">SMART SVIT <span>/</span> </li>
+							<li class="titers__item">SMART SVIT <span>/</span> </li>
+							<li class="titers__item">SMART SVIT <span>/</span> </li>
+							<li class="titers__item">SMART SVIT <span>/</span> </li>
+							<li class="titers__item">SMART SVIT <span>/</span> </li>
+							<li class="titers__item">SMART SVIT <span>/</span> </li>
+							<li class="titers__item">SMART SVIT <span>/</span> </li>
+							<li class="titers__item">SMART SVIT <span>/</span> </li>
+							<li class="titers__item">SMART SVIT <span>/</span> </li>
+							<li class="titers__item">SMART SVIT <span>/</span> </li>
+							<li class="titers__item">SMART SVIT <span>/</span> </li>
+							<li class="titers__item">SMART SVIT <span>/</span> </li>
+							<li class="titers__item">SMART SVIT <span>/</span> </li>
+							<li class="titers__item">SMART SVIT <span>/</span> </li>
+							<li class="titers__item">SMART SVIT <span>/</span> </li>
+							<li class="titers__item">SMART SVIT <span>/</span> </li>
+						</ul>
+						<ul class="titers__list" data-speed="50">
+							<li class="titers__item">SMART SVIT <span>/</span> </li>
+							<li class="titers__item">SMART SVIT <span>/</span> </li>
+							<li class="titers__item">SMART SVIT <span>/</span> </li>
+							<li class="titers__item">SMART SVIT <span>/</span> </li>
+							<li class="titers__item">SMART SVIT <span>/</span> </li>
+							<li class="titers__item">SMART SVIT <span>/</span> </li>
+							<li class="titers__item">SMART SVIT <span>/</span> </li>
+							<li class="titers__item">SMART SVIT <span>/</span> </li>
+							<li class="titers__item">SMART SVIT <span>/</span> </li>
+							<li class="titers__item">SMART SVIT <span>/</span> </li>
+							<li class="titers__item">SMART SVIT <span>/</span> </li>
+							<li class="titers__item">SMART SVIT <span>/</span> </li>
+							<li class="titers__item">SMART SVIT <span>/</span> </li>
+							<li class="titers__item">SMART SVIT <span>/</span> </li>
+							<li class="titers__item">SMART SVIT <span>/</span> </li>
+							<li class="titers__item">SMART SVIT <span>/</span> </li>
+							<li class="titers__item">SMART SVIT <span>/</span> </li>
+							<li class="titers__item">SMART SVIT <span>/</span> </li>
+							<li class="titers__item">SMART SVIT <span>/</span> </li>
+							<li class="titers__item">SMART SVIT <span>/</span> </li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+
+			<section id="next" class="page-section">
+				<div class="page-section__container">
+					<div class="page-section__content">
+
+						<div class="page-chess">
+							<div class="page-chess__content">
+								<div class="page-chess__row">
+									<div class="page-chess__item item-img">
+										<div class="item-img__image-ibg">
+											<img src="img/04.jpeg" alt="svit">
+										</div>
+									</div>
+									<div class="page-chess__item item-text">
+										<div class="item-text__content">
+											<h2>Про компанію</h2>
+											<p>
+												У нашій команді працюють високопрофесійні інженери, проектувальники, програмісти і монтажники, що дозволяє нам вирішувати будь-які, навіть найскладніші завдання. У нашій команді працюють високопрофесійні інженери, проектувальники, програмісти і монтажники, що дозволяє нам вирішувати будь-які, навіть найскладніші завдання.У нашій команді працюють високопрофесійні інженери, проектувальники, програмісти і монтажники, що дозволяє нам вирішувати будь-які, навіть найскладніші завдання.
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="page-chess__row">
+									<div class="page-chess__item item-text">
+										<div class="item-text__content">
+											<h2>Наші досягнення</h2>
+											<p>
+												У нашій команді працюють високопрофесійні інженери, проектувальники, програмісти і монтажники, що дозволяє нам вирішувати будь-які, навіть найскладніші завдання. У нашій команді працюють високопрофесійні інженери, проектувальники, програмісти і монтажники, що дозволяє нам вирішувати будь-які, навіть найскладніші завдання.У нашій команді працюють високопрофесійні інженери, проектувальники, програмісти і монтажники, що дозволяє нам вирішувати будь-які, навіть найскладніші завдання.
+											</p>
+										</div>
+									</div>
+									<div class="page-chess__item item-img">
+										<div class="item-img__image-ibg">
+											<img src="img/14.jpeg" alt="svit">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</section>
+
+		</main>
+		<footer class="footer">
+			<div class="footer__container">
+				<div class="footer__content">
+
+					<div class="footer__top-mobile" data-spollers data-one-spoller>
+						<div class="footer__top-mobile-content">
+
+						</div>
+						<div class="page-contacts">
+							<div class="page-contacts__content">
+
+							</div>
+						</div>
+					</div>
+
+					<div class="footer__top">
+						<div class="footer__col">
+							<div class="footer__link" data-da=".footer__top-mobile-content, 992, last">
+								<a href="index.html" data-text="Головна">Головна</a>
+							</div>
+							<div class="footer__link" data-da=".footer__top-mobile-content, 992, last">
+								<a href="gallery.html" data-text="Галерея">Галерея</a>
+							</div>
+							<div class="footer__link" data-da=".footer__top-mobile-content, 992, last">
+								<a href="blog.html" data-text="Блог">Блог</a>
+							</div>
+							<div class="footer__link" data-da=".footer__top-mobile-content, 992, last">
+								<a href="contacts.html" data-text="Контакти">Контакти</a>
+							</div>
+						</div>
+						<div class="footer__col">
+							<div class="footer__link" data-da=".footer__top-mobile-content, 992, last">
+								<div class="footer__spoller" data-spoller>
+									<a href="switches.html" data-text="Вимикачі">Вимикачі</a>
+									<img src="img/interface/shevron-ico.svg" alt="svit">
+								</div>
+								<ul class="footer__spoller-body">
+									<li>
+										<a href="smart-panel.html">Смарт панель</a>
+									</li>
+									<li>
+										<a href="room-control.html">Рум контролер</a>
+									</li>
+									<li>
+										<a class="_disable" href="">Термостат</a>
+									</li>
+									<li>
+										<a class="_disable" href="">Конфігуратор</a>
+									</li>
+									<li>
+										<a href="soft.html">Софт</a>
+									</li>
+									<li>
+										<a href="support.html">Інструкція</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="footer__col">
+							<div class="footer__link" data-da=".footer__top-mobile-content, 992, last">
+								<div class="footer__spoller" data-spoller>
+									<a href="smart-house.html" data-text="Розумний дім">Розумний дім</a>
+									<img src="img/interface/shevron-ico.svg" alt="svit">
+								</div>
+								<ul class="footer__spoller-body">
+									<li>
+										<a href="smart-home.html">Розумний дім</a>
+									</li>
+									<li>
+										<a href="switches.html">Пристрої</a>
+									</li>
+									<li>
+										<a href="soft.html">Софт</a>
+									</li>
+									<li>
+										<a href="support.html">Інструкція</a>
+									</li>
+									<li>
+										<a class="_disable" href="">Аксесуари</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="footer__col">
+							<div class="footer__link" data-da=".footer__top-mobile-content, 992, last">
+								<div class="footer__spoller" data-spoller>
+									<a href="support.html" data-text="Підтримка">Підтримка</a>
+									<img src="img/interface/shevron-ico.svg" alt="svit">
+								</div>
+								<ul class="footer__spoller-body">
+									<li>
+										<a href="about.html">Про нас</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="footer__col">
+							<div class="footer__link" data-da=".footer__top-mobile .page-contacts__content, 992, first">
+								<span>Зв’яжіться з нами</span>
+								<a class="footer__link-contacts" href="tel:+380960302040">+380 96 030 20 40</a>
+								<a class="footer__link-contacts" href="tel:+380960302040">+40 96 030 20 40</a>
+							</div>
+							<form class="footer__form" action="#" data-da=".footer__top-mobile, 992, last">
+								<span>Підписка на наші оновлення</span>
+								<div class="footer__form-box">
+									<input type="text" name="email" data-required="email" placeholder="Введіть свій е-mail">
+									<button type="submit">
+										<img src="img/interface/plane-ico.svg" alt="svit">
+									</button>
+								</div>
+							</form>
+						</div>
+						<div class="footer__col">
+							<div class="footer__link" data-da=".footer__top-mobile .page-contacts__content, 992, last">
+								<span>Напишіть нам</span>
+								<a class="footer__link-contacts" href="mailto:svit_info@gmail.com">svit_info@gmail.com</a>
+							</div>
+
+							<div class="footer__markets" data-da=".footer__top-mobile, 992, last">
+								<a href="https://support.jmango360.com/portal/en/kb/articles/get-app-url-app-stores" class="page-market">
+									<div class="page-market__content">
+										<div>
+											<img src="img/interface/apple-ico.svg" alt="svit">
+										</div>
+										<div>
+											<span>Доступно в</span>
+											<span>App Store</span>
+										</div>
+									</div>
+								</a>
+								<a href="https://developer.android.com/distribute/marketing-tools/linking-to-google-play" class="page-market">
+									<div class="page-market__content">
+										<div>
+											<img src="img/interface/gp-white.svg" alt="svit">
+										</div>
+										<div>
+											<span>Доступно в</span>
+											<span>Gogle Play</span>
+										</div>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="footer__bottom">
+				<div class="__container">
+					<div class="footer__bottom-content">
+						<div>
+							<span>&copy;2021 SVIt</span>
+						</div>
+						<div>
+							<a href="privacy-policy.html">Політика конфіденційності</a>
+						</div>
+						<div>
+							<span>by:</span>
+							<a href="https://in-create.com/" target="_blank" rel="nofollow">
+								<img src="img/interface/logo-increate.svg" alt="Increate">
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</footer>
+		<!-- style -->
+		<link rel="stylesheet" href="css/style.min.css">
+		<!-- global variable -->
+		<script>
+			let validationUnfillError = "Заповніть поле"
+			let validationUncorrectError = "Некоректний формат"
+			let validationShortPassError = "> 8 символів"
+		</script>
+		<!-- libs -->
+		<script defer src="libs/gsap.min.js"></script>
+		<script defer src="libs/three.min.js"></script>
+		<script defer src="libs/OrbitControls.js"></script>
+		<script defer src="libs/GLTFLoader.js"></script>
+		<script defer src="libs/DRACOLoader.js"></script>
+		<script defer src="libs/inline_svg.js"></script>
+		<script defer src="libs/dynamic_adapt.js"></script>
+		<script defer src="libs/smoothScroll.js"></script>
+		<script defer src="libs/lazyload.min.js"></script>
+		<script defer src="libs/hystmodal.min.js"></script>
+		<script defer src="libs/inputmask.min.js"></script>
+		<script defer src="libs/swiper-bundle.min.js"></script>
+		<script defer src="libs/ScrollTrigger.min.js"></script>
+		<!-- custom -->
+		<script defer src="js/main.js"></script>
+	</div>
+</body>
+
+</html>
